@@ -26,7 +26,7 @@ angular.module('Office', ['ui.router'])
     .factory('choicesBox', [function() {
         var o = {
             choices: [
-                [{ title: "have rainy weather?", image: "img/rain.jpeg", fun: -1 }, { title: "img/sun.jpg", image: "img/sun.jpg", fun: 1 }],
+                [{ title: "have rainy weather?", image: "img/rain.jpeg", fun: -1 }, { title: "have sunny weather?", image: "img/sun.jpg", fun: 1 }],
                 [{ title: "eat Skittles?", image: "img/skittles.jpg", fun: 1 }, { title: "eat fancy chocolate?", image: "img/chocolates.jpg", fun: -1 }],
                 [{ title: "own a nice cabin?", image: "img/cabin.jpg", fun: 1 }, { title: "own a nice house?", image: "img/house.jpg", fun: -1 }],
                 [{ title: "go on a hike?", image: "img/hike.jpg", fun: -1 }, { title: "go to the beach?", image: "img/beach.jpg", fun: 1 }],
