@@ -17,48 +17,42 @@
     </div>
     <script type="text/ng-template" id="/home.html">
         <div class="page-header">
-            <h1>News</h1>
+            <h1>Which character from The Office are you?</h1>
         </div>
         <form ng-submit="start()" style="margin-top30px;">
             <button type="submit">Start</button>
         </form>
-        <div>
-            {{post}}
+        <div class="row">
+            <h2>Would you rather...</h2>
         </div>
         <div class="row">
-            <div ng-repeat="choice in posts">
-                <div class="col-md-6">
-                    <span class="glyphicon glyphicon-thumbs-up" ng-click="selectChoice(choice)"></span> 
-                    {{choice.title}}
-                    <div class="clear"></div>
-                    <img src="{{choice.image}}">Alt</img>
-                </div>
+            <div class="col-md-6" ng-click="selectChoice(selectedOne.fun); selectedOne.src = posts[0].image;">
+                <h3>{{selectedOne.title}}</h3>
+                <div class="clear"></div>
+                <img ng-src="{{selectedOne.src}}" width="450px" height="auto"></img>
             </div>
+            <div class="col-md-6" ng-click="selectChoice(selectedTwo.fun); selectedTwo.src = posts[1].image;">
+                <h3>{{selectedTwo.title}}</h3>
+                <div class="clear"></div>
+                <img ng-src="{{selectedTwo.src}}" width="450px" height="auto"></img>
+            </div>
+            <div class="clear"></div>
         </div>
         <a href="#/results/{{fun}}">{{showResults}}</a>
     </script>
     <script type="text/ng-template" id="/results.html">
         <div class="page-header">
-            <h3>
-                {{result.title}}
-            </h3>
+            <h1>
+                You are most like...
+            </h1>
         </div>
 
-        <div>
-            <span class="glyphicon glyphicon-share" ng-click="incrementUpvotes(comment)"></span> {{comment.upvotes}}
-            <span style="font-size:20px; margin-left:10px;">
-        {{comment.body}}
-      </span>
-        </div>
-        <form ng-submit="addComment()" style="margin-top:30px;">
-            <h3>Add a new comment</h3>
-
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Comment" ng-model="body"></input>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <h1>{{character.name}}</h1>
+                <div class="clear"></div>
+                <img ng-src="{{character.src}}" width="450px" height="auto"></img>
             </div>
-            <button type="submit" class="btn btn-primary">Post</button>
-        </form>
-
     </script>
 </body>
 
