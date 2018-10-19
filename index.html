@@ -1,60 +1,65 @@
 <html>
 
 <head>
-  <title>News</title>
-  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.js"></script>
-  <script src="./js/main.js"></script>
-
+    <title>Character Quiz</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/main.css" rel="stylesheet">
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.js"></script>
+    <script src="./js/main.js"></script>
 </head>
 
 <body ng-app="News">
-  <div class="row">
-    <div class="col-md-6 col-md-offset-3">
-      <ui-view></ui-view>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <ui-view></ui-view>
+        </div>
     </div>
-  </div>
-  <script type="text/ng-template" id="/home.html">
-    <div class="page-header">
-      <h1>News</h1>
-    </div>
+    <script type="text/ng-template" id="/home.html">
+        <div class="page-header">
+            <h1>News</h1>
+        </div>
+        <form ng-submit="start()" style="margin-top30px;">
+            <button type="submit">Start</button>
+        </form>
+        <div>
+            {{post}}
+        </div>
+        <div class="row">
+            <div ng-repeat="choice in posts">
+                <div class="col-md-6">
+                    <span class="glyphicon glyphicon-thumbs-up" ng-click="selectChoice(choice)"></span> 
+                    {{choice.title}}
+                    <div class="clear"></div>
+                    <img src="{{choice.image}}">Alt</img>
+                </div>
+            </div>
+        </div>
+        <a href="#/results/{{fun}}">{{showResults}}</a>
+    </script>
+    <script type="text/ng-template" id="/results.html">
+        <div class="page-header">
+            <h3>
+                {{result.title}}
+            </h3>
+        </div>
 
-    <form ng-submit="addPost()" style="margin-top30px;">
-      <input type="text" ng-model="formContent"></input>
-      <button type="submit">Post</button>
-    </form>
-    <div>
-      {{post}}
-    </div>
-    <div ng-repeat="post in posts | orderBy: '-upvotes'">
-      <span class="glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotes(post)"></span> {{post.title}} - upvotes: {{post.upvotes}}
-      <a href="#/posts/{{posts.indexOf(post)}}">Comments</a>
-    </div>
-  </script>
-  <script type="text/ng-template" id="/posts.html">
-    <div class="page-header">
-      <h3>
-        {{post.title}}
-      </h3>
-    </div>
-
-    <div ng-repeat="comment in post.comments | orderBy:'-upvotes'">
-      <span class="glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotes(comment)"></span> {{comment.upvotes}}
-      <span style="font-size:20px; margin-left:10px;">
+        <div>
+            <span class="glyphicon glyphicon-share" ng-click="incrementUpvotes(comment)"></span> {{comment.upvotes}}
+            <span style="font-size:20px; margin-left:10px;">
         {{comment.body}}
       </span>
-    </div>
-    <form ng-submit="addComment()" style="margin-top:30px;">
-      <h3>Add a new comment</h3>
+        </div>
+        <form ng-submit="addComment()" style="margin-top:30px;">
+            <h3>Add a new comment</h3>
 
-      <div class="form-group">
-        <input type="text" class="form-control" placeholder="Comment" ng-model="body"></input>
-      </div>
-      <button type="submit" class="btn btn-primary">Post</button>
-    </form>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Comment" ng-model="body"></input>
+            </div>
+            <button type="submit" class="btn btn-primary">Post</button>
+        </form>
 
-  </script>
+    </script>
 </body>
 
 </html>
