@@ -9,7 +9,7 @@
     <script src="./js/main.js"></script>
 </head>
 
-<body ng-app="News">
+<body ng-app="Office">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <ui-view></ui-view>
@@ -17,28 +17,29 @@
     </div>
     <script type="text/ng-template" id="/home.html">
         <div class="page-header">
-            <h1>Which character from The Office are you?</h1>
+            <img src="img/banner.jpg">
+            <h1 style="text-align: center">Which character from The Office are you?</h1>
         </div>
         <form ng-submit="start()" style="margin-top30px;">
-            <button type="submit">Start</button>
+            <button id="startbtn" class="btn btn-primary btn-lg" type="submit" onclick="document.getElementById('startbtn').classList.toggle('hidden');">Get Started!</button>
         </form>
-        <div class="row">
-            <h2>Would you rather...</h2>
+        <div id="rather" class="row">
+            <h2 style="text-align: center">{{rather}}</h2>
         </div>
-        <div class="row">
-            <div class="col-md-6" ng-click="selectChoice(selectedOne.fun); selectedOne.src = posts[0].image;">
-                <h3>{{selectedOne.title}}</h3>
+        <div id="options" class="row">
+            <div class="col-md-6 point" ng-click="selectChoice(selectedOne.fun); selectedOne.src = posts[0].image;">
+                <h3 style="text-align: center">{{selectedOne.title}}</h3>
                 <div class="clear"></div>
                 <img ng-src="{{selectedOne.src}}" width="450px" height="auto"></img>
             </div>
-            <div class="col-md-6" ng-click="selectChoice(selectedTwo.fun); selectedTwo.src = posts[1].image;">
-                <h3>{{selectedTwo.title}}</h3>
+            <div class="col-md-6 point" ng-click="selectChoice(selectedTwo.fun); selectedTwo.src = posts[1].image;">
+                <h3 style="text-align: center">{{selectedTwo.title}}</h3>
                 <div class="clear"></div>
                 <img ng-src="{{selectedTwo.src}}" width="450px" height="auto"></img>
             </div>
             <div class="clear"></div>
         </div>
-        <a href="#/results/{{fun}}">{{showResults}}</a>
+        <a href="#/results/{{fun}}"><button id="showresultsbtn" class="center-block btn btn-primary btn-lg hidden">{{showResults}}</button></a>
     </script>
     <script type="text/ng-template" id="/results.html">
         <div class="page-header">

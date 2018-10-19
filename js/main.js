@@ -1,4 +1,4 @@
-angular.module('News', ['ui.router'])
+angular.module('Office', ['ui.router'])
     .config([
         '$stateProvider',
         '$urlRouterProvider',
@@ -77,9 +77,13 @@ angular.module('News', ['ui.router'])
             $scope.fun = funVal.characterValue;
             $scope.showResults = '';
             $scope.start = function() {
+                $scope.rather = "Would you rather...";
                 var len = $scope.choices.length
                 if (len == 0) {
-                    $scope.showResults = "Show Results";
+                    document.getElementById('showresultsbtn').classList.toggle('hidden');
+                    document.getElementById('options').classList.toggle('hidden');
+                    document.getElementById('rather').classList.toggle('hidden');
+                    $scope.showResults = "Show Results!";
                 }
                 else {
                     var index = Math.floor(Math.random() * len);
